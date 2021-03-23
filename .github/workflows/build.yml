@@ -1,8 +1,9 @@
 name: Build
 
-on: [
-  push
-]
+on:
+  push:
+    tags:
+      - v*
 
 jobs:
   deploy:
@@ -19,6 +20,7 @@ jobs:
         run: npx pkg --targets linux,macos,win --out-path .build .build/index.js
       - name: Release current
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           prerelease: true
           files: |

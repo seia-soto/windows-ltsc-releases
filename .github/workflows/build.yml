@@ -1,8 +1,9 @@
 name: Build
 
-on: [
-  push
-]
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   deploy:
@@ -21,7 +22,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: "$(git describe --tags --abbrev=0)"
           prerelease: true
           files: |
             .build/index-linux

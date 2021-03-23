@@ -1,0 +1,30 @@
+name: Build
+
+on: [
+  push
+]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn
+      - name: Create dot-build directory
+        run: mkdir -p .build
+      - name: Compile into one file
+        run: npx @vercel/ncc build bin/index.js -m --target es2015 -o .build
+      - name: Build binaries
+        run: npx pkg --targets linux,macos,win --out-path .build .build/index.js
+      - name: Release current
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          files: |
+            .build/index-linux
+            .build/index-macos
+            .build/index-win.exe
+            .build/index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

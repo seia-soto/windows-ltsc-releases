@@ -4,6 +4,9 @@
   "main": "src/index.js",
   "author": "Seia-Soto <seia@outlook.kr>",
   "license": "MIT",
+  "scripts": {
+    "release": "standard-version"
+  },
   "bin": {
     "ls-win-releases": "./bin"
   },
@@ -16,6 +19,7 @@
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1"
+    "eslint-plugin-promise": "^4.3.1",
+    "standard-version": "^9.1.1"
   }
 }

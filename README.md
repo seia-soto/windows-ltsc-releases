@@ -18,6 +18,12 @@ There are few ways to use this package.
 Go to releases tab and download right one for you.
 We're currently exporting Linux, macOS, Windows binaries.
 
+```sh
+index-<os> <language>
+
+# e.g. index-win.exe ko
+```
+
 ## as File
 
 With Vercel's ncc, we also exported into one file.
